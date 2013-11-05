@@ -14,7 +14,7 @@ Dot Vault is a simple shell script that spiders through a list of file paths, co
 
 This file can then be backed up, shared, or synced without fear of compromising any sensitive information contained within the dotfiles.
 
-Dot Vault can also import vaults making restoring an old machine or configuring a new one from a vault file a breeze.
+Dot Vault can also import vaults and restore all files within to their original locations, even if it doesn't have access to the configuration file that generated the vault, making restoring an old machine or configuring a new one from a vault file a breeze.
 
 ## Getting Started
 
