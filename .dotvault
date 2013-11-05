@@ -1,0 +1,14 @@
+###############################################################
+# Dot Vault Configuration
+# A new line delimited list of dot file paths to be backed up.
+###############################################################
+~/.bash_profile
+~/.bashrc
+~/.chef
+~/.rightscale
+~/.gitconfig
+~/.gitignore_global
+~/.gitignore
+~/.gnupg
+~/.ssh
+~/.dotvault

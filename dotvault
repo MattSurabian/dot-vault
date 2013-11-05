@@ -1,0 +1,77 @@
+#!/bin/bash
+
+#############
+# CONFIG VARS
+#############
+
+dotvaultConfig=${HOME}/.dotvault
+tmpDirName=dotvaultTMP
+cipher=des3
+
+#############
+# ARGUMENTS
+#############
+
+args=("$@");
+operationMode=${args[0]}
+fileNameArg=${args[1]}
+if [ ! -z "$3" ]
+then
+    passArg="-pass ${args[2]}" # check if a password argument was sent and set it if so!
+else
+    passArg=''
+fi
+
+rm -rf ${tmpDirName}
+
+case $operationMode in
+    ##############
+    # EXPORT MODE
+    ##############
+    --export )
+        echo -e "Export Mode"
+        mkdir ${tmpDirName}
+        while read line
+           do
+               if [[ ! ${line} =~ \#.* ]] && [[ -a ${line/\~/${HOME}} ]]
+               then
+                   modFileName=${line//./*}
+                   modFileName=${modFileName//\//|}
+                   cp -r ${line/\~/${HOME}} ${tmpDirName}/${modFileName}
+               fi
+           done < <(cat $dotvaultConfig)
+
+        tar -c ${tmpDirName} | openssl ${cipher} -e -out ${fileNameArg}.vault ${passArg}
+        rm -rf ${tmpDirName}
+        ;;
+
+    ##############
+    # IMPORT MODE
+    ##############
+    --import )
+        echo -e "Import Mode"
+        rm -rf ${tmpDirName}
+        openssl ${cipher} -d -in ${fileNameArg} -out ${tmpDirName}.tar ${passArg}
+        tar -xf ${tmpDirName}.tar
+        while read line
+            do
+                newFileName=${line//\*/.}
+                newFileName=${newFileName//\|/\/}
+                echo -e "Importing ${newFileName}"
+                if [ -d ${tmpDirName}/${line} ]
+                then
+                    isDir='/'
+                else
+                    isDir=''
+                fi
+                cp -r ${tmpDirName}/${line}${isDir} ${newFileName/\~/${HOME}}${isDir}
+            done< <(ls ${tmpDirName})
+        rm -rf ${tmpDirName} ${tmpDirName}.tar
+        ;;
+
+    * )
+        echo -e "  Supported usage: dotvault (--export|--import) EXPORTED_FILENAME PASS_ARGUMENT(optional)"
+        echo -e "  Imports likely must be run using sudo."
+        ;;
+
+esac
