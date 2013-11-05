@@ -50,6 +50,8 @@ dotvault --export EXPORTED_FILENAME PASS_ARGUMENT(optional)
 
 This use case would set the vault file's password to the value of the environment variable named DOTVAULTPASS. This is the most secure choice for use in an environment where you don't want your chosen password visible to anyone spying on the process list.
 
+If using an environment variable and sudo, you'll need to use `sudo -E` for the user's environment variables to be passed through.
+
 ````
 dotvault --export env:DOTVAULTPASS
 ````
@@ -63,15 +65,15 @@ dotvault --export pass:wala
 ````
 
 ### Import Mode
-Import mode requests the vault's passphrase, decrypts the vault and copies all files and folders found to their appropriate place on the machine. Dot Vault uses very simple character replacement when generating the vault file, allowing it to know a given file's configured location as it appeared in the .dotvault file of the machine which generated it.
+Import mode requests the vault's passphrase, decrypts the vault and copies all files and folders found to their appropriate place on the machine. Dot Vault uses very simple character replacement when generating the vault file, allowing it to know a given file's configured location as it appeared in the .dotvault file of the machine which generated it. `Sudo` will likely be necessary for an import operation, the `-E` parameter should be used to pass the user's environment variables through.
 
 ````
-dotvault --import IMPORT_FILENAME PASS_ARGUMENT(optional)
+sudo -E dotvault --import IMPORT_FILENAME PASS_ARGUMENT(optional)
 ````
 
 - *IMPORT_FILENAME*: A valid name/path to a .vault file created by Dot Vault
 
-- *PASS_ARGUMENT*: Same as export mode.
+- *PASS_ARGUMENT*: Same as export mode. If using an environment variable and sudo, you'll need to use `sudo -E` for the user's environment variables to be passed through.
 
 
 *The vault file replaces the following characters from the provided path in the config file and reverses the process to determine where to put them back.*

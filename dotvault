@@ -71,7 +71,7 @@ case $operationMode in
 
     * )
         echo -e "  Supported usage: dotvault (--export|--import) EXPORTED_FILENAME PASS_ARGUMENT(optional)"
-        echo -e "  Imports likely must be run using sudo."
+        echo -e "  Imports likely must be run using sudo -E"
         ;;
 
 esac
