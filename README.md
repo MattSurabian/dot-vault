@@ -10,9 +10,9 @@ There are lots of [resources for managing dotfiles](http://dotfiles.github.io/),
 
 ## The Solution
 
-Dot Vault is a simple shell script that spiders through a list of file paths, copies them to a working directory which is tar'd and excrypted with a passphrase using des3 via openssl. The working directory is then destroyed.
+Dot Vault is a simple shell script that spiders through a list of file paths, copies them to a working directory which is tar'd and excrypted with a passphrase using des3 via openssl. The working directory is then destroyed. Leaving the user with a single password protected .vault file.
 
-This file can then be automatically detected and backed up without fear of compromising any sensitive information contained within the dotfiles.
+This file can then be backed up, shared, or synced without fear of compromising any sensitive information contained within the dotfiles.
 
 Dot Vault can also import vaults making restoring an old machine or configuring a new one from a vault file a breeze.
 
