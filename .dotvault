@@ -12,3 +12,7 @@
 ~/.gnupg
 ~/.ssh
 ~/.dotvault
+~/.npm
+~/.nvm
+~/.heroku
+
