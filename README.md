@@ -53,7 +53,7 @@ This use case would set the vault file's password to the value of the environmen
 If using an environment variable and sudo, you'll need to use `sudo -E` for the user's environment variables to be passed through.
 
 ````
-dotvault --export env:DOTVAULTPASS
+dotvault --export EXPORTED_FILENAME env:DOTVAULTPASS
 ````
 
 *String Password Argument Example*
@@ -61,7 +61,7 @@ dotvault --export env:DOTVAULTPASS
 This is the least secure form of the password argument as the chosen password will appear in the process list and anywhere this action is configured.
 
 ````
-dotvault --export pass:wala
+dotvault --export EXPORTED_FILENAME pass:wala
 ````
 
 ### Import Mode
