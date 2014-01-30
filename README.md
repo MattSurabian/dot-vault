@@ -1,4 +1,4 @@
-# Dot Vault v1.0.0
+# Dot Vault v1.0.1
 
 ## The Problem
 
