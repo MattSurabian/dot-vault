@@ -97,7 +97,7 @@ In the source for Dot Vault there are several variables setup for simple configu
 You can schedule dotvault to run with cron in order to make sure you're always backing up current data. There are several ways to interact with cron, the below command is provided for convenience and will run an export every hour. If your user account does not currently have any cron jobs setup, you may get a warning that says `crontab: no crontab for USER` that's nothing to worry about. 
 
 ```
-(crontab -l ; echo '0 * * * *  . ~/.bash_profile; dotvault --export EXPORTED_FILENAME PASS_ARGUMENT') |uniq - | crontab -
+(crontab -l ; echo '0 * * * *  . ~/.bash_profile; /usr/local/bin/dotvault --export EXPORTED_FILENAME PASS_ARGUMENT') |uniq - | crontab -
 
 ```
 
