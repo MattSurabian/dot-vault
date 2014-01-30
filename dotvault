@@ -64,7 +64,7 @@ case $operationMode in
                 else
                     isDir=''
                 fi
-                cp -r ${tmpDirName}/${line}${isDir} ${newFileName/\~/${HOME}}${isDir}
+                cp -a ${tmpDirName}/${line}${isDir} ${newFileName/\~/${HOME}}${isDir}
             done< <(ls ${tmpDirName})
         rm -rf ${tmpDirName} ${tmpDirName}.tar
         ;;
